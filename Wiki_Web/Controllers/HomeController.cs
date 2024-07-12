@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WikiModel.Models;
+using Wiki_Model.Models;
 
-namespace WikiWeb.Controllers
+namespace Wiki_Web.Controllers
 {
     public class HomeController : Controller
     {
