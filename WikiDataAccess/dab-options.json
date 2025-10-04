@@ -1,0 +1,30 @@
+﻿{
+   "ConnectionStringName": "dab-connection-string",
+   "Dacpac": null,
+   "DatabaseType": 3,
+   "MergeDacpacs": false,
+   "Optional": false,
+   "ProjectPath": "C:\\Users\\dell\\Source\\Repos\\WikiWeb_Entity_Framework\\WikiDataAccess",
+   "Tables": [
+      {
+         "Name": "[dbo].[Authors]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Books]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Categories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Publishers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SubCategories]",
+         "ObjectType": 0
+      }
+   ]
+}

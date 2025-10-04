@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wiki_DataAccess.Data;
 
@@ -11,9 +12,11 @@ using Wiki_DataAccess.Data;
 namespace Wiki_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251004100652_AddingAuthorPublisherAndSubCategory1")]
+    partial class AddingAuthorPublisherAndSubCategory1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,34 +113,6 @@ namespace Wiki_DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Wiki_Model.Models.BookDetail", b =>
-                {
-                    b.Property<int>("BookDetail_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookDetail_Id"));
-
-                    b.Property<int>("Book_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfChapters")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfPages")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Weight")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BookDetail_Id");
-
-                    b.HasIndex("Book_Id")
-                        .IsUnique();
-
-                    b.ToTable("BookDetails");
-                });
-
             modelBuilder.Entity("Wiki_Model.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -192,22 +167,6 @@ namespace Wiki_DataAccess.Migrations
                     b.HasKey("SubCategory_Id");
 
                     b.ToTable("SubCategories");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.BookDetail", b =>
-                {
-                    b.HasOne("Wiki_Model.Models.Book", "Book")
-                        .WithOne("BookDetail")
-                        .HasForeignKey("Wiki_Model.Models.BookDetail", "Book_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Book", b =>
-                {
-                    b.Navigation("BookDetail");
                 });
 #pragma warning restore 612, 618
         }
