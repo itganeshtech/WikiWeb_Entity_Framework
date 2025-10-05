@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wiki_DataAccess.Data;
 
@@ -11,9 +12,11 @@ using Wiki_DataAccess.Data;
 namespace Wiki_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251005201016_AddFluentBookToDb")]
+    partial class AddFluentBookToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,34 +184,6 @@ namespace Wiki_DataAccess.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Author", b =>
-                {
-                    b.Property<int>("Author_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Author_Id"));
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Author_Id");
-
-                    b.ToTable("Fluent_Authors");
-                });
-
             modelBuilder.Entity("Wiki_Model.Models.Fluent_Book", b =>
                 {
                     b.Property<int>("BookId")
@@ -254,26 +229,6 @@ namespace Wiki_DataAccess.Migrations
                     b.HasKey("BookDetail_Id");
 
                     b.ToTable("Fluent_BookDetails", (string)null);
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Publisher", b =>
-                {
-                    b.Property<int>("Publisher_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Publisher_Id"));
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Publisher_Id");
-
-                    b.ToTable("Fluent_Publishers");
                 });
 
             modelBuilder.Entity("Wiki_Model.Models.Publisher", b =>

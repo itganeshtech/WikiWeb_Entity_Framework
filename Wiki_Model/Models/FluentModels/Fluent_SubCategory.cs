@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Wiki_Model.Models
 {
-    public class Publisher
+    public class Fluent_SubCategory
     {
         [Key]
-        public int Publisher_Id { get; set; }
+        public int SubCategory_Id { get; set; }
         [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
-        public string Location { get; set; }
-        public List<Book> Books { get; set; }
     }
 }
