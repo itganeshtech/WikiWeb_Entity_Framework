@@ -14,6 +14,6 @@ namespace Wiki_Model.Models
         
         public string Name { get; set; }
         public string Location { get; set; }
-        //public List<Fluent_Book> Books { get; set; }
+        public List<Fluent_Book> Books { get; set; }
     }
 }

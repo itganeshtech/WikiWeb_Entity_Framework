@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wiki_DataAccess.Data;
 
@@ -11,9 +12,11 @@ using Wiki_DataAccess.Data;
 namespace Wiki_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251005213328_AddFluent_OneToOneRelation_Book_BookDetail")]
+    partial class AddFluent_OneToOneRelation_Book_BookDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,17 +228,12 @@ namespace Wiki_DataAccess.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Publisher_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("Publisher_Id");
-
-                    b.ToTable("Book_fluent");
+                    b.ToTable("Fluent_Book");
                 });
 
             modelBuilder.Entity("Wiki_Model.Models.Fluent_BookDetail", b =>
@@ -386,17 +384,6 @@ namespace Wiki_DataAccess.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Book", b =>
-                {
-                    b.HasOne("Wiki_Model.Models.Fluent_Publisher", "Publisher")
-                        .WithMany("Books")
-                        .HasForeignKey("Publisher_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Publisher");
-                });
-
             modelBuilder.Entity("Wiki_Model.Models.Fluent_BookDetail", b =>
                 {
                     b.HasOne("Wiki_Model.Models.Fluent_Book", "Book")
@@ -423,11 +410,6 @@ namespace Wiki_DataAccess.Migrations
             modelBuilder.Entity("Wiki_Model.Models.Fluent_Book", b =>
                 {
                     b.Navigation("BookDetail");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Publisher", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Wiki_Model.Models.Publisher", b =>
