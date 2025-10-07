@@ -11,7 +11,7 @@ namespace Wiki_DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Book_fluent",
+                name: "Fluent_Book",
                 columns: table => new
                 {
                     BookId = table.Column<int>(type: "int", nullable: false)
@@ -22,7 +22,7 @@ namespace Wiki_DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Book_fluent", x => x.BookId);
+                    table.PrimaryKey("PK_Fluent_Book", x => x.BookId);
                 });
         }
 
@@ -30,7 +30,7 @@ namespace Wiki_DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Book_fluent");
+                name: "Fluent_Book");
         }
     }
 }

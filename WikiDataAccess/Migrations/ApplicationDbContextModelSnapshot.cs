@@ -225,15 +225,10 @@ namespace Wiki_DataAccess.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Publisher_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
-
-                    b.HasIndex("Publisher_Id");
 
                     b.ToTable("Book_fluent");
                 });
@@ -246,9 +241,6 @@ namespace Wiki_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookDetail_Id"));
 
-                    b.Property<int>("Book_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("NumberOfChapters")
                         .HasColumnType("int")
                         .HasColumnName("NoOfChapters");
@@ -260,9 +252,6 @@ namespace Wiki_DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookDetail_Id");
-
-                    b.HasIndex("Book_Id")
-                        .IsUnique();
 
                     b.ToTable("Fluent_BookDetails", (string)null);
                 });
@@ -386,28 +375,6 @@ namespace Wiki_DataAccess.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Book", b =>
-                {
-                    b.HasOne("Wiki_Model.Models.Fluent_Publisher", "Publisher")
-                        .WithMany("Books")
-                        .HasForeignKey("Publisher_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_BookDetail", b =>
-                {
-                    b.HasOne("Wiki_Model.Models.Fluent_Book", "Book")
-                        .WithOne("BookDetail")
-                        .HasForeignKey("Wiki_Model.Models.Fluent_BookDetail", "Book_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("Wiki_Model.Models.Author", b =>
                 {
                     b.Navigation("BookAuthorMap");
@@ -418,16 +385,6 @@ namespace Wiki_DataAccess.Migrations
                     b.Navigation("BookAuthorMap");
 
                     b.Navigation("BookDetail");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Book", b =>
-                {
-                    b.Navigation("BookDetail");
-                });
-
-            modelBuilder.Entity("Wiki_Model.Models.Fluent_Publisher", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Wiki_Model.Models.Publisher", b =>
